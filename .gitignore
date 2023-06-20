@@ -61,3 +61,6 @@ build-iPhoneSimulator/
 
 # ignore DS_Store
 *.DS_Store
+
+# ignore development.log
+*.log
