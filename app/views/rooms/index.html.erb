@@ -1,10 +1,5 @@
 <h2>List of Rooms</h2>
-<ul>
-<% @rooms.each do |room| %>
-  <li>
-    <%= link_to room.name, room %>
-    <%= room.capacity %>
-  </li>
-<% end %>
-</ul>
+
+<% render @rooms %>
+
 <%= link_to "Create Room", new_room_path %>

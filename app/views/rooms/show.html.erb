@@ -3,13 +3,13 @@
   <strong>Current Bookings:</strong>
   </br>
   <ul>
-  <% @room.bookings.each do |booking| %>
-    <li> Booking Start: <%= booking.start %></li>
-    <li> Booking End: <%= booking.end %></li>
-    <li> Booking Purpose: <%= booking.purpose ? booking.purpose : 'N/A' %></li>
-    <li> Booking: <%= link_to 'Booking', booking %>
-    </br>
-  <% end %>
-</ul>
+    <% @room.bookings.each do |booking| %>
+      <li> Booking Start: <%= booking.start %></li>
+      <li> Booking End: <%= booking.end %></li>
+      <li> Booking Purpose: <%= booking.purpose ? booking.purpose : 'N/A' %></li>
+      <li> Booking: <%= link_to 'Booking', booking %></li>
+      </br>
+    <% end %>
+  </ul>
 <%= link_to "Edit Room", edit_room_path %>
 <%= button_to "Remove this Room", @room, method: :delete %>
