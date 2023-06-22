@@ -1,4 +1,15 @@
 <%= form_with(model: room) do |f| %>
+  <% if room.errors.any? %>
+   <div style="color: red">
+    <h2><%= pluralize(room.errors.count, 'error') %> prohibited the room from saving!</h2>
+    <ul>
+    <% room.errors.each do |e| %>
+      <li><%= e.full_message %></li>
+    <% end %>
+    </ul>
+    </div>
+  <% end %>
+
   <div>
     <%= f.label :name, style: "display: block" %>
     <%= f.text_field :name %>

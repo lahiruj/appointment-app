@@ -1,0 +1,37 @@
+<h1>List of Bookings</h1>
+
+<%= form_with(model: booking) do |f| %>
+  <% if booking.errors.any? %>
+   <div style="color: red">
+    <h2><%= pluralize(booking.errors.count, 'error') %> prohibited the booking from saving!</h2>
+    <ul>
+    <% booking.errors.each do |e| %>
+      <li><%= e.full_message %></li>
+    <% end %>
+    </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= f.label :start, style: "display: block" %>
+    <%= f.datetime_field :start %>
+  </div>
+  <div>
+    <%= f.label :end, style: "display: block" %>
+    <%= f.datetime_field :end %>
+  </div>
+  <div>
+    <%= f.label :purpose, style: "display: block" %>
+    <%= f.text_field :purpose %>
+  </div>
+  <div>
+    <%= f.label :room, style: "display: block" %>
+    <%= f.collection_select :room_id, Room.all, :id, :name  %>
+  </div>
+  <div>
+    <%= f.hidden_field :user_id, value: current_user.id  %>
+  </div>
+  <div>
+    <%= f.submit %>
+  </div>
+<% end %>

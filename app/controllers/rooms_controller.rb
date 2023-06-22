@@ -15,10 +15,12 @@ class RoomsController < ApplicationController
   def create
     @room = Room.new(room_params)
 
-    if @room.save
-      redirect_to rooms_path
-    else
-      render :new, status: :unprocessable_entity
+    respond_to do |format|
+      if @room.save
+        format.html { redirect_to room_url(@room), notice: "Room was created successfully!" }
+      else
+        format.html { render :new, status: :unprocessable_entity }
+      end
     end
   end
   
@@ -26,16 +28,20 @@ class RoomsController < ApplicationController
   end
 
   def update
-    if @room.update(room_params)
-      redirect_to rooms_path
-    else
-      render :edit, status: :unprocessable_entity
+    respond_to do |format|
+      if @room.update(room_params)
+        format.html { redirect_to room_url(@room), notice: "Room was updated successfully!" }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
     end
   end
 
   def destroy
-    @room.destory
-    redirect_to rooms_path
+    @room.destroy
+    respond_to do |format|
+      format.html { redirect_to rooms_url, notice: "Room was successfully removed!" }
+    end
   end
 
   private
